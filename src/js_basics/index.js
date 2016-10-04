@@ -48,7 +48,7 @@ export const nestedSum = (arr) => {
   // Return the sum all the numbers you find, anywhere in the nest of arrays.
 	var sum = 0;
 	for(var i in arr) {
-		if((typeof arr[i] == "number") {
+		if(typeof arr[i] == "number") {
 		   	sum+=arr[i];
 		} else if(arr[i] instanceof Array){
 	    	sum+=nestedSum(arr[i]);
