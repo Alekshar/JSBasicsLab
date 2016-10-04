@@ -19,7 +19,7 @@ export const longestString = (arr) => {
   // arr will be an array.
   // Return the longest string in the array
 	var longest = "";
-	for(i in arr){
+	for(var i in arr){
 		if(typeof arr[i] == "string"
 			&& arr[i].length > longest.length){
 			longest = arr[i];
