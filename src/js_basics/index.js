@@ -8,6 +8,9 @@ export const isNumberEven = (i) => {
 export const getFileExtension = (str) => {
   // str will be a string, but it may not have a file extension.
   // Return the file extension (with no period) if it has one, otherwise false
+	if(str.indexOf('.') < 0){
+		return false;
+	}
 	var value = /(?:\.([^.]+))?$/.exec(str)[1];
 	return value; 
 };
@@ -15,7 +18,14 @@ export const getFileExtension = (str) => {
 export const longestString = (arr) => {
   // arr will be an array.
   // Return the longest string in the array
-	return arr.sort(function (a, b) { return b.length - a.length; })[0];
+	var longest = "";
+	for(i in arr){
+		if(typeof arr[i] == "string"
+			&& arr[i].length > longest.length){
+			longest = arr[i];
+		}
+	}
+	return longest;
 };
 
 export const reverseString = (str) => {
@@ -28,6 +38,7 @@ export const isPalindrome = (str) => {
   // str will be an string
   // Return true if it is a palindrome and false otherwise.
   // It should be case insensitive and not consider space or punctuation.
+	str = str.toLowerCase();
 	var reversed = reverseString(str);
 	return reversed == str;
 };
@@ -37,12 +48,10 @@ export const nestedSum = (arr) => {
   // Return the sum all the numbers you find, anywhere in the nest of arrays.
 	var sum = 0;
 	for(var i in arr) {
-		switch (typeof arr[i]) {
-		    case 'array':
-		    	sum+=nestedSum(arr[i]);
-		    	break;
-		    case 'number':
-		    	sum+=arr[i];
+		if((typeof arr[i] == "number") {
+		   	sum+=arr[i];
+		} else if(arr[i] instanceof Array){
+	    	sum+=nestedSum(arr[i]);
 		}
 	}
 	return sum;
